@@ -1,0 +1,42 @@
+[package]
+name = "vnet-desktop"
+version = "0.1.0"
+description = "VNET VPN — VPN open-source em Rust (desktop)"
+edition = "2021"
+
+# Standalone: não faz parte do workspace principal do vnet
+[workspace]
+
+[features]
+# Sempre ativo por padrão: embute os assets de dist/ no binário
+# (sem isso o exe tenta carregar o dev server localhost:5173)
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+# Backend vnet (mesmos crates usados pelo CLI/TUI/GUI legado)
+vnet-core = { path = "../../../crates/vnet-core" }
+vnet-ipc = { path = "../../../crates/vnet-ipc" }
+vnet-proto = { path = "../../../crates/vnet-proto" }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true

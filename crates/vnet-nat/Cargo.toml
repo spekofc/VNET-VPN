@@ -1,0 +1,17 @@
+[package]
+name = "vnet-nat"
+version = "0.1.0"
+edition = "2021"
+description = "NAT traversal (STUN, ICE, UDP hole-punching)"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bytes = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+rand = { workspace = true }
+stun = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

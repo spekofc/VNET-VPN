@@ -1,0 +1,25 @@
+[package]
+name = "vnet-gui"
+version = "0.1.0"
+edition = "2021"
+description = "Native GUI for vnet (egui + wgpu)"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "vnet-gui"
+path = "src/main.rs"
+
+[dependencies]
+egui = { workspace = true }
+eframe = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+vnet-core = { path = "../vnet-core" }
+vnet-ipc = { path = "../vnet-ipc" }
+vnet-proto = { path = "../vnet-proto" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+dirs = { workspace = true }
+hex = "0.4"

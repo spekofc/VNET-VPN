@@ -1,0 +1,417 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Design tokens: tema escuro do VNET ---- */
+:root {
+  /* Fundos */
+  --v-bg-base: #101a29; /* conteúdo */
+  --v-bg-title: #1b2636; /* title bar + menu bar */
+  --v-bg-surface: #16202e;
+  --v-bg-card: #1d2a3d;
+  --v-bg-card-head: #1a2637;
+  --v-bg-hover: #26374e;
+  --v-bg-menu: #223046;
+
+  /* Bordas */
+  --v-border: #2a3a52;
+  --v-border-strong: #3a4f6e;
+
+  /* Teal da marca */
+  --v-primary: #2aa9c9;
+  --v-primary-hover: #3fbfdd;
+  --v-primary-text: #4cc4e0;
+
+  /* Estados */
+  --v-online: #2aa9c9;
+  --v-offline: #8a97a8;
+  --v-warn: #e0a23a;
+  --v-error: #e05a5a;
+
+  /* Texto */
+  --v-text: #e8eef5;
+  --v-text-dim: #9fb0c4;
+  --v-text-muted: #6f8296;
+
+  --v-shadow-menu: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --v-shadow-dialog: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* Reset */
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--v-bg-base);
+  color: var(--v-text);
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+}
+
+/* Foco discreto */
+:focus-visible {
+  outline: 1px solid var(--v-primary);
+  outline-offset: 1px;
+}
+
+/* Scrollbar fina */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2f4058;
+  border-radius: 4px;
+  border: 2px solid var(--v-bg-base);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4f6e;
+}
+
+/* Arraste da janela frameless */
+[data-tauri-drag-region] {
+  -webkit-app-region: drag;
+}
+button,
+input,
+select,
+a,
+[role="menuitem"] {
+  -webkit-app-region: no-drag;
+}
+
+input {
+  outline: none;
+}
+input::placeholder {
+  color: var(--v-text-muted);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Botões                                                                  */
+/* ---------------------------------------------------------------------- */
+.v-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 12px;
+  font: 12px "Segoe UI", system-ui, sans-serif;
+  color: var(--v-text);
+  background: linear-gradient(180deg, #2a3b53, #20304a);
+  border: 1px solid var(--v-border-strong);
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.v-btn:hover {
+  background: linear-gradient(180deg, #324660, #243650);
+}
+.v-btn:active {
+  background: #1b2941;
+}
+.v-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.v-btn-primary {
+  background: linear-gradient(180deg, #3fb6d6, #1f8fab);
+  border-color: #1f8fab;
+  color: #fff;
+  font-weight: 600;
+}
+.v-btn-primary:hover {
+  background: linear-gradient(180deg, #4cc4e0, #2399b6);
+}
+.v-btn-primary:active {
+  background: linear-gradient(180deg, #2ea8c6, #17809a);
+}
+
+.v-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.v-btn-ghost:hover {
+  background: #24344a;
+}
+
+/* Controles da title bar */
+.v-winbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  color: #c6d2e0;
+  cursor: pointer;
+}
+.v-winbtn:hover {
+  background: #2b3b52;
+  color: #fff;
+}
+.v-winbtn-close:hover {
+  background: #c94141;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Topo: power + perfil                                                    */
+/* ---------------------------------------------------------------------- */
+.v-power {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex: 0 0 84px;
+  border: none;
+  padding: 0;
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  background: linear-gradient(165deg, #96e6f4 0%, #42b9d8 42%, #1887a6 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 1px 4px rgba(0, 0, 0, 0.5);
+}
+.v-power::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 32%,
+    #26384f 0%,
+    #17212f 62%,
+    #121a26 100%
+  );
+}
+.v-power-icon,
+.v-power-label {
+  position: relative;
+  z-index: 1;
+}
+.v-power-icon {
+  width: 26px;
+  height: 26px;
+  color: #eaf6fa;
+}
+.v-power-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #eaf6fa;
+  line-height: 1;
+}
+
+.v-power-off {
+  background: linear-gradient(165deg, #5e788a 0%, #3b5266 45%, #26394a 100%);
+}
+.v-power-off .v-power-label {
+  color: #a9b8c6;
+}
+
+.v-power-busy {
+  background: linear-gradient(165deg, #7fd6ea 0%, #3aa5c2 45%, #1a7590 100%);
+  opacity: 0.85;
+}
+.v-power-busy .v-power-label {
+  color: #cfeef7;
+  letter-spacing: 0.14em;
+}
+
+/* Badge de status */
+.v-status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9px;
+  padding: 2px 11px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #fff;
+  background: linear-gradient(180deg, #3fb6d6, #1f8fab);
+  border: 1px solid #1f8fab;
+}
+.v-status-offline {
+  background: #2b3a4d;
+  border-color: var(--v-border-strong);
+  color: var(--v-text-dim);
+}
+.v-status-busy {
+  background: linear-gradient(180deg, #3a9fb8, #22788f);
+  border-color: #22788f;
+}
+.v-status-error {
+  background: linear-gradient(180deg, #e06a6a, #b53232);
+  border-color: #a52c2c;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Menu bar / dropdowns                                                    */
+/* ---------------------------------------------------------------------- */
+.v-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 26px;
+  padding: 0 11px;
+  font-size: 12px;
+  color: var(--v-text);
+  white-space: nowrap;
+  cursor: default;
+}
+.v-menu-item:hover {
+  background: #2c3f5c;
+}
+.v-menu-shortcut {
+  margin-left: auto;
+  color: var(--v-text-dim);
+  font-size: 11px;
+}
+
+.v-menu-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  padding: 3px 0;
+  background: var(--v-bg-menu);
+  border: 1px solid var(--v-border-strong);
+  box-shadow: var(--v-shadow-menu);
+  z-index: 60;
+  animation: v-fade 0.09s ease-out;
+}
+
+.v-menu-sep {
+  height: 1px;
+  margin: 3px 0;
+  background: var(--v-border-strong);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Diálogos                                                                */
+/* ---------------------------------------------------------------------- */
+.v-dialog {
+  width: 100%;
+  max-width: 300px;
+  background: var(--v-bg-title);
+  border: 1px solid var(--v-border-strong);
+  border-radius: 3px;
+  box-shadow: var(--v-shadow-dialog);
+  overflow: hidden;
+}
+.v-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding: 0 8px 0 11px;
+  background: var(--v-bg-surface);
+  border-bottom: 1px solid var(--v-border);
+}
+.v-dialog-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--v-text);
+}
+.v-dialog-body {
+  padding: 12px;
+}
+
+.v-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: var(--v-text-dim);
+}
+.v-input {
+  width: 100%;
+  height: 26px;
+  padding: 0 8px;
+  font: 12px "Segoe UI", system-ui, sans-serif;
+  color: var(--v-text);
+  background: #0e1725;
+  border: 1px solid var(--v-border-strong);
+  border-radius: 2px;
+}
+.v-input:focus {
+  border-color: var(--v-primary);
+}
+
+/* Toggle compacto */
+.v-switch {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 9px;
+  background: #2b3a4d;
+  border: 1px solid var(--v-border-strong);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.v-switch[data-on="true"] {
+  background: linear-gradient(180deg, #3fb6d6, #1f8fab);
+  border-color: #1f8fab;
+}
+.v-switch > span {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.1s;
+}
+.v-switch[data-on="true"] > span {
+  transform: translateX(16px);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Toasts                                                                  */
+/* ---------------------------------------------------------------------- */
+.v-toast {
+  border: 1px solid var(--v-border-strong);
+  border-left-width: 3px;
+  background: #223046;
+  color: var(--v-text);
+  font-size: 11.5px;
+  padding: 6px 9px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  animation: v-fade 0.1s ease-out;
+}
+.v-toast-info {
+  border-left-color: var(--v-primary);
+}
+.v-toast-success {
+  border-left-color: #35b87c;
+}
+.v-toast-error {
+  border-left-color: var(--v-error);
+}
+
+@keyframes v-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

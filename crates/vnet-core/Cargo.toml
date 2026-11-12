@@ -1,0 +1,27 @@
+[package]
+name = "vnet-core"
+version = "0.1.0"
+edition = "2021"
+description = "Core session management and peer mesh"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+anyhow = "1.0"
+bytes = { workspace = true }
+futures = "0.3"
+hex = "0.4"
+serde = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = "0.1"
+vnet-crypto = { path = "../vnet-crypto" }
+vnet-proto = { path = "../vnet-proto" }
+vnet-nat = { path = "../vnet-nat" }
+vnet-tun = { path = "../vnet-tun" }
+chacha20poly1305 = { workspace = true }
+hkdf = { workspace = true }
+sha2 = { workspace = true }
+rand = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+wintun = "0.5"

@@ -1,0 +1,29 @@
+# Rust
+target/
+**/target/
+*.pdb
+
+# Node / frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.vite/
+
+# Tauri
+**/gen/
+
+# Wintun é redistribuído à parte (veja o README)
+**/wintun.dll
+
+# Local / segredos
+.env
+.env.*
+*.log
+node_id
+pending.json
+
+# SO
+Thumbs.db
+.DS_Store
+desktop.ini

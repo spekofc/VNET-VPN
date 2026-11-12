@@ -1,0 +1,21 @@
+[package]
+name = "vnet-cli"
+version = "0.1.0"
+edition = "2021"
+description = "Command-line interface for vnet"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "vnet"
+path = "src/main.rs"
+
+[dependencies]
+clap = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+vnet-core = { path = "../vnet-core" }
+vnet-ipc = { path = "../vnet-ipc" }
+thiserror = { workspace = true }
+serde_json = { workspace = true }

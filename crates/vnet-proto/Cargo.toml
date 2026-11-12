@@ -1,0 +1,24 @@
+[package]
+name = "vnet-proto"
+version = "0.1.0"
+edition = "2021"
+description = "vnet protocol implementation — frames, handshake, messages"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/vnet/vnet"
+
+[dependencies]
+bytes = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+vnet-crypto = { path = "../vnet-crypto" }
+vnet-nat = { path = "../vnet-nat" }
+sha2 = { workspace = true }
+hmac = { workspace = true }
+
+[dev-dependencies]
+vnet-crypto = { path = "../vnet-crypto" }
+proptest = { workspace = true }
+
+[features]
+default = ["std"]
+std = []

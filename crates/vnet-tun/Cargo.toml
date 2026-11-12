@@ -1,0 +1,21 @@
+[package]
+name = "vnet-tun"
+version = "0.1.0"
+edition = "2021"
+description = "Cross-platform TUN device abstraction"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bytes = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+libc = "0.2"
+socket2 = { workspace = true }
+wintun = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+wintun = { workspace = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
