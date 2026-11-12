@@ -12,6 +12,10 @@
 
 ---
 
+## Baixar
+
+**[VNET-VPN-0.1.0-win64.zip](https://github.com/spekofc/VNET-VPN/releases/latest)** — portátil, sem instalador. Extraia `vnet-desktop.exe` e `wintun.dll` na **mesma** pasta, rode o exe e aceite o UAC. Ou compile do código, logo abaixo.
+
 ## O que é
 
 O VNET cria um adaptador de rede virtual no seu PC e liga esse adaptador ao PC do outro jogador por UDP cifrado. Para o jogo, é uma LAN normal: descoberta automática de mundos, conexão direta por IP, qualquer porta.
